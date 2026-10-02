@@ -204,7 +204,7 @@ NAT (PAT) en funcionamiento, con el servidor traducido a la IP pública `22.41.4
 
 Dirección IP del servidor (`10.22.41.130/28`):
 
-![ip a del servidor](image/17-ip-a-servidor.png)
+![ip a del servidor](image/17-ip-a-servidorr.png)
 
 > Los nodos NAT1 y Cloud1 de la topología solo se usaron para dar acceso a internet durante la instalación y para entrar a la GUI del FortiGate; no forman parte del escenario evaluado.
 
