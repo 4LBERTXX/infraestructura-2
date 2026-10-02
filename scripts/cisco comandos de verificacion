@@ -1,0 +1,21 @@
+! ------------------------------------------------------------
+! Infraestructura 2 - Matricula 20252241
+! Comandos de verificacion usados en el router Cisco (router-2241)
+! Ejecutar en la consola del router, en modo privilegiado (#)
+! ------------------------------------------------------------
+ 
+! Interfaces y direccionamiento
+show ip interface brief
+ 
+! Configuracion de la VPN y del NAT
+show running-config | section crypto
+show running-config | include ip nat
+ 
+! Estado de la VPN
+show crypto isakmp sa
+show crypto ipsec sa
+show crypto ipsec sa | include encaps|decaps
+ 
+! NAT (PAT) en funcionamiento
+show ip nat translations
+ 
