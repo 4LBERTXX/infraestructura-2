@@ -299,6 +299,30 @@ curl -k https://10.22.41.130
 
 ![Túnel restablecido](image/20-tunel-restablecido.png)
 
+# 📜 Scripts — Infraestructura 2 (Matrícula 20252241)
+
+| Archivo | Se ejecuta en | Para qué sirve |
+| --- | --- | --- |
+| `01-prueba-conectividad.sh` | Usuario | Muestra fecha y hora, IP, ping, traceroute y HTTPS hacia el servidor |
+| `02-monitor-vpn.sh` | Usuario | Ping continuo con fecha y hora; muestra cuándo la VPN se cae y cuándo se restablece |
+| `03-instalar-servidor-https.sh` | Servidor | Instala Apache2 y configura HTTPS con certificado autofirmado |
+| `netplan-usuario.yaml` | Usuario | Configuración de red por DHCP |
+| `netplan-servidor.yaml` | Servidor | Configuración de red estática (`10.22.41.130/28`, gateway `10.22.41.129`) |
+| `04-cisco-comandos-verificacion.txt` | Router Cisco | Comandos de verificación de interfaces, VPN y NAT |
+
+## Uso
+
+```bash
+chmod +x *.sh
+./01-prueba-conectividad.sh            # usa 10.22.41.130 por defecto
+./02-monitor-vpn.sh                    # Ctrl+C para detener
+sudo ./03-instalar-servidor-https.sh   # solo en el servidor
+```
+
+Los `.yaml` se copian a `/etc/netplan/` y se aplican con `sudo netplan apply`.
+
+La configuración del FortiGate se realizó por GUI, por lo que no tiene script; su configuración completa está en `running-configs/`.
+
 ---
 
 ## 📁 Estructura del Repositorio
