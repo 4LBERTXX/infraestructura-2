@@ -1,0 +1,101 @@
+Building configuration...
+
+Current configuration : 1170 bytes
+!
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+!
+hostname isp-2241
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+no ip icmp rate-limit unreachable
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+no ipv6 cef
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip tcp synwait-time 5
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ description salida-internet
+ ip address dhcp
+ ip nat outside
+ duplex full
+!
+interface FastEthernet1/0
+ description wan-a-fg-t2
+ ip address 22.41.3.1 255.255.255.252
+ ip nat inside
+ speed auto
+ duplex auto
+!
+interface FastEthernet1/1
+ description wan-hacia-routercisco-2241
+ ip address 22.41.4.1 255.255.255.252
+ ip nat inside
+ speed auto
+ duplex auto
+!
+ip nat inside source list 1 interface FastEthernet0/0 overload
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+access-list 1 permit 22.41.3.0 0.0.0.3
+access-list 1 permit 22.41.4.0 0.0.0.3
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ stopbits 1
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ stopbits 1
+line vty 0 4
+ login
+!
+!
+end
